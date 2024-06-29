@@ -1,6 +1,5 @@
 ## Step-by-Step Instructions and Checklist
 
-- [ ] Run `yarn plop`, and follow prompts to generate server or client components for your library
 - [ ] 🌟 Enable [private vulnerability reporting](https://github.com/react18-tools/webgl-generative-particles/security)
 - [ ] Set up `CodeCov`
   - Visit Codecov and set up your repo

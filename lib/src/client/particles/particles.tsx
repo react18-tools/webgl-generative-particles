@@ -1,25 +1,28 @@
-import { HTMLProps, ReactNode } from "react";
-import styles from "./particles.module.scss";
+import { HTMLProps, useEffect, useRef } from "react";
 
-export interface ParticlesProps extends HTMLProps<HTMLDivElement> {
-	children?: ReactNode;
+export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
+  nParticles?: number;
 }
 
 /**
- * 
+ *
  *
  * @example
  * ```tsx
  * <Particles />
  * ```
- * 
+ *
  * @source - Source code
  */
-export const Particles = ({ children, ...props }: ParticlesProps) => {
-  const className = [props.className, styles["particles"]].filter(Boolean).join(" ");
-	return (
-		<div {...props} className={className} data-testid="particles">
-			{children}
-		</div>
-	);
-}
+export const Particles = ({ nParticles, ...props }: ParticlesProps) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {}, [nParticles]);
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ pointerEvents: "none", position: "fixed", top: 0, left: 0 }}
+      {...props}
+      data-testid="particles"
+    />
+  );
+};
