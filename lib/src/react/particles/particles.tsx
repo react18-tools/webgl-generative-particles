@@ -1,4 +1,5 @@
 import { HTMLProps, useEffect, useRef } from "react";
+import { renderParticles } from "../..";
 
 export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
   nParticles?: number;
@@ -16,7 +17,10 @@ export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
  */
 export const Particles = ({ nParticles, ...props }: ParticlesProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {}, [nParticles]);
+  useEffect(
+    () => (canvasRef.current ? renderParticles(canvasRef.current) : undefined),
+    [nParticles],
+  );
   return (
     <canvas
       ref={canvasRef}
