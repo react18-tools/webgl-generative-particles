@@ -1,5 +1,5 @@
 import { HTMLProps, useEffect, useRef } from "react";
-import { renderParticles } from "../..";
+import { renderParticles } from "../../simulator";
 
 export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
   nParticles?: number;

@@ -64,7 +64,7 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
       nextjs-darkmode:
         specifier: ^1.0.4
-        version: 1.0.4(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        version: 1.0.4(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       nextjs-themes:
         specifier: ^4.0.3
         version: 4.0.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
@@ -78,8 +78,8 @@ importers:
         specifier: ^0.0.3
         version: 0.0.3(@types/react@18.3.3)(react@18.3.1)
       react18-loaders:
-        specifier: ^1.1.3
-        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        specifier: latest
+        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       webgl-generative-particles:
         specifier: workspace:*
         version: link:../../lib
@@ -113,7 +113,7 @@ importers:
         version: link:../../packages/shared
       nextjs-darkmode:
         specifier: ^1.0.4
-        version: 1.0.4(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        version: 1.0.4(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -121,11 +121,16 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react18-loaders:
+<<<<<<< Updated upstream
         specifier: ^1.1.3
         version: 1.1.3(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+=======
+        specifier: latest
+        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+>>>>>>> Stashed changes
       react18-themes:
         specifier: ^3.2.0
-        version: 3.2.0(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        version: 3.2.0(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       webgl-generative-particles:
         specifier: workspace:*
         version: link:../../lib
@@ -159,7 +164,10 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
       r18gs:
         specifier: ^1.1.3
-        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+      vitest-webgl-canvas-mock:
+        specifier: ^1.1.0
+        version: 1.1.0
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -249,19 +257,24 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
       nextjs-darkmode:
         specifier: ^1.0.4
-        version: 1.0.4(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        version: 1.0.4(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       nextjs-themes:
         specifier: ^4.0.3
         version: 4.0.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       r18gs:
         specifier: ^1.1.3
-        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       react-live:
         specifier: ^4.1.7
         version: 4.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react18-loaders:
+<<<<<<< Updated upstream
         specifier: ^1.1.3
         version: 1.1.3(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+=======
+        specifier: latest
+        version: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+>>>>>>> Stashed changes
       webgl-generative-particles:
         specifier: workspace:*
         version: link:../../lib
@@ -1717,6 +1730,9 @@ packages:
   collect-v8-coverage@1.0.2:
     resolution: {integrity: sha512-lHl4d5/ONEbLlJvaJNtsF/Lz+WvB07u2ycqTYbdrq7UypDXailES4valYb2eWiJFxZlVmpGekfqoxQhzyFdT4Q==}
 
+  color-convert@0.5.3:
+    resolution: {integrity: sha512-RwBeO/B/vZR3dfKL1ye/vx8MHZ40ugzpyfeVG5GsiuGnrlMWe2o8wxBbLCpw9CsxV+wHuzYlCiWnybrIA0ling==}
+
   color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
 
@@ -1774,6 +1790,22 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
+<<<<<<< Updated upstream
+=======
+  cssfontparser@1.2.1:
+    resolution: {integrity: sha512-6tun4LoZnj7VN6YeegOVb67KBX/7JJsqvj+pv3ZA7F878/eN33AbGa5b/S/wXxS/tcp8nc40xRUrsPlxIyNUPg==}
+
+  cssom@0.3.8:
+    resolution: {integrity: sha512-b0tGHbfegbhPJpxpiBPU2sCkigAqtM9O121le6bbOlgyV+NyGyCmVfJ6QW9eRjz8CpNfWEOYBIMIGRYkLwsIYg==}
+
+  cssom@0.5.0:
+    resolution: {integrity: sha512-iKuQcq+NdHqlAcwUY0o/HL69XQrUaQdMjmStJ8JFmUaiiQErlhrmuigkg/CU4E2J0IyUKUrMAgl36TvN67MqTw==}
+
+  cssstyle@2.3.0:
+    resolution: {integrity: sha512-AZL67abkUzIuvcHqk7c09cezpGNcxUxU4Ioi/05xHk4DQeTkWmGYftIE6ctU6AEt+Gn4n1lDStOtj7FKycP71A==}
+    engines: {node: '>=8'}
+
+>>>>>>> Stashed changes
   cssstyle@4.0.1:
     resolution: {integrity: sha512-8ZYiJ3A/3OkDd093CBT/0UKDWry7ak4BdPTFP2+QEP7cmhouyq/Up709ASSj2cK02BbZiMgk7kYjZNS4QP5qrQ==}
     engines: {node: '>=18'}
@@ -1841,6 +1873,12 @@ packages:
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
+<<<<<<< Updated upstream
+=======
+
+  deep-object-diff@1.1.9:
+    resolution: {integrity: sha512-Rn+RuwkmkDwCi2/oXOFS9Gsr5lJZu/yTGpK7wAaAIE75CC+LCGEZHpY6VQJa/RoJcrmaA/docWJZvYohlNkWPA==}
+>>>>>>> Stashed changes
 
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
@@ -1910,6 +1948,14 @@ packages:
 
   dom-accessibility-api@0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
+<<<<<<< Updated upstream
+=======
+
+  domexception@4.0.0:
+    resolution: {integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==}
+    engines: {node: '>=12'}
+    deprecated: Use your platform's native DOMException instead
+>>>>>>> Stashed changes
 
   dot-case@3.0.4:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
@@ -2302,6 +2348,12 @@ packages:
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
+<<<<<<< Updated upstream
+=======
+
+  fast-safe-stringify@2.1.1:
+    resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
+>>>>>>> Stashed changes
 
   fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
@@ -3689,6 +3741,9 @@ packages:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
 
+  parse-color@1.0.0:
+    resolution: {integrity: sha512-fuDHYgFHJGbpGMgw9skY/bj3HL/Jrn4l/5rSspy00DoT4RyLnDcRvPxdZ+r6OFwIsgAuhDh4I09tAId4mI12bw==}
+
   parse-entities@2.0.0:
     resolution: {integrity: sha512-kkywGpCcRYhqQIchaWqZ875wzpS/bMKhz5HnN3p7wveJTkTtyAB/AlnS0f8DFSqYW1T82t6yEAkEcB+A1I3MbQ==}
 
@@ -4835,6 +4890,9 @@ packages:
         optional: true
       terser:
         optional: true
+
+  vitest-webgl-canvas-mock@1.1.0:
+    resolution: {integrity: sha512-F/5+XvBs7cSZPe41IGQTbSjNimB4NntPnRqv4eWb42voFKQINH8y2xZkibNUxYJCGIuDFsYp1lDQgTvWLahSzA==}
 
   vitest@1.6.0:
     resolution: {integrity: sha512-H5r/dN06swuFnzNFhq/dnz37bPXnq8xB2xB5JOVk8K09rUtoeNN+LHWkoQ0A/i3hvbUKKcCei9KpbxqHMLhLLA==}
@@ -6749,6 +6807,8 @@ snapshots:
   collect-v8-coverage@1.0.2:
     optional: true
 
+  color-convert@0.5.3: {}
+
   color-convert@1.9.3:
     dependencies:
       color-name: 1.1.3
@@ -6820,6 +6880,19 @@ snapshots:
 
   cssesc@3.0.0: {}
 
+<<<<<<< Updated upstream
+=======
+  cssfontparser@1.2.1: {}
+
+  cssom@0.3.8: {}
+
+  cssom@0.5.0: {}
+
+  cssstyle@2.3.0:
+    dependencies:
+      cssom: 0.3.8
+
+>>>>>>> Stashed changes
   cssstyle@4.0.1:
     dependencies:
       rrweb-cssom: 0.6.0
@@ -9177,9 +9250,23 @@ snapshots:
     transitivePeerDependencies:
       - next
 
+<<<<<<< Updated upstream
   nextjs-themes@4.0.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
     dependencies:
       '@types/react': 18.3.3
+=======
+  nextjs-darkmode@1.0.4(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
+    dependencies:
+      '@types/react': 18.3.3
+      r18gs: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - next
+
+  nextjs-themes@4.0.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
+    dependencies:
+      '@types/react': 18.3.3
+>>>>>>> Stashed changes
       r18gs: 2.0.0-alpha.0(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
@@ -9394,6 +9481,10 @@ snapshots:
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
+
+  parse-color@1.0.0:
+    dependencies:
+      color-convert: 0.5.3
 
   parse-entities@2.0.0:
     dependencies:
@@ -9645,6 +9736,16 @@ snapshots:
     optionalDependencies:
       next: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
 
+<<<<<<< Updated upstream
+=======
+  r18gs@1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
+    dependencies:
+      '@types/react': 18.3.3
+      react: 18.3.1
+    optionalDependencies:
+      next: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
+
+>>>>>>> Stashed changes
   r18gs@2.0.0-alpha.0(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
     dependencies:
       '@types/react': 18.3.3
@@ -9687,10 +9788,26 @@ snapshots:
     optionalDependencies:
       next: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
 
+  react18-loaders@1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
+    dependencies:
+      '@types/react': 18.3.3
+      r18gs: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+      react: 18.3.1
+    optionalDependencies:
+      next: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
+
   react18-themes@3.2.0(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
     dependencies:
       '@types/react': 18.3.3
       r18gs: 1.1.3(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
+      react: 18.3.1
+    optionalDependencies:
+      next: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
+
+  react18-themes@3.2.0(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1):
+    dependencies:
+      '@types/react': 18.3.3
+      r18gs: 1.1.3(@types/react@18.3.3)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(react@18.3.1)
       react: 18.3.1
     optionalDependencies:
       next: 14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
@@ -10636,6 +10753,11 @@ snapshots:
       '@types/node': 20.14.9
       fsevents: 2.3.3
       sass: 1.77.6
+
+  vitest-webgl-canvas-mock@1.1.0:
+    dependencies:
+      cssfontparser: 1.2.1
+      parse-color: 1.0.0
 
   vitest@1.6.0(@types/node@20.14.9)(jsdom@24.1.0)(sass@1.77.6):
     dependencies:
