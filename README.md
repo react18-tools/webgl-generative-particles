@@ -119,6 +119,18 @@ export default MyComponent() {
 }
 ```
 
+## Creadits
+
+I have learnt the concepts from the following blogs and tutorials.
+
+- https://experiments.withgoogle.com/search?q=particles
+- https://nullprogram.com/blog/2014/06/29/
+- https://gpfault.net/posts/webgl2-particles.txt.html
+- https://umbcgaim.wordpress.com/2010/07/01/gpu-random-numbers/
+- https://www.youtube.com/playlist?list=PLjcVFFANLS5zH_PeKC6I8p0Pt1hzph_rt
+- https://stackoverflow.com/q/15215968/23175171
+- https://stackoverflow.com/q/71021772/23175171
+
 ## License
 
 This library is licensed under the MPL-2.0 open-source license.
