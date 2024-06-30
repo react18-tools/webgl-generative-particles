@@ -1,8 +1,8 @@
 import { HTMLProps, useEffect, useRef } from "react";
-import { renderParticles } from "../../simulator";
+import { ParticlesOptions, renderParticles } from "../../simulator";
 
 export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
-  nParticles?: number;
+  options?: ParticlesOptions;
 }
 
 /**
@@ -15,16 +15,16 @@ export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
  *
  * @source - Source code
  */
-export const Particles = ({ nParticles, ...props }: ParticlesProps) => {
+export const Particles = ({ options, style, ...props }: ParticlesProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(
-    () => (canvasRef.current ? renderParticles(canvasRef.current) : undefined),
-    [nParticles],
+    () => (canvasRef.current ? renderParticles(canvasRef.current, options) : undefined),
+    [options],
   );
   return (
     <canvas
       ref={canvasRef}
-      style={{ pointerEvents: "none", position: "fixed", top: 0, left: 0 }}
+      style={{ pointerEvents: "none", position: "fixed", top: 0, left: 0, ...style }}
       {...props}
       data-testid="particles"
     />
