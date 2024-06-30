@@ -17,7 +17,7 @@ export default function Page(): JSX.Element {
           maxParticles: 100_000,
           generationRate: 0.5,
           ageRange: [1.01, 1.15],
-          angleRage: [Math.PI / 2.0 - theta, Math.PI / 2.0 + theta],
+          angleRange: [Math.PI / 2.0 - theta, Math.PI / 2.0 + theta],
           speedRange: [0.6, 1.2],
           forceField: [0, -0.5],
           mouseOff: true,

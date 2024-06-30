@@ -69,7 +69,7 @@ export interface ParticlesOptions {
   /** @defaultValue false */
   mouseOff?: boolean;
   /** min and max Angles in radians: @defaultValue [-Math.PI, Math.PI] */
-  angleRage?: [number, number];
+  angleRange?: [number, number];
   /** min and max age of particles in seconds */
   ageRange?: [number, number];
   /** [minSpeed, maxSpeed] */
