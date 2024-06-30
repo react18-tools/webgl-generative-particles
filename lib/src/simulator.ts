@@ -56,13 +56,15 @@ export interface ParticlesOptions {
 }
 
 const defaultOptions: ParticlesOptions = {
-  rgba: [1, 0, 0, 1],
-  maxParticles: 1000_000,
-  generationRate: 1,
-  forceField: [0, -0.25],
-  angleRage: [-PI, PI],
-  speedRange: [0.5, 1],
-  ageRange: [2, 10],
+  rgba: [1, 0, 0, 0.5],
+  maxParticles: 1000,
+  generationRate: 0.25,
+  // setting range from -PI to PI craetes some patches because of overflows
+  angleRage: [-2 * PI, 2 * PI],
+  origin: [-1, -1],
+  speedRange: [0.01, 0.1],
+  ageRange: [0.01, 0.5],
+  forceField: [0, 0.1],
 };
 
 /** generate initial data for the simulation */

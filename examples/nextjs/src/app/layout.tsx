@@ -24,13 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           fullScreenOverlay
           options={{
             rgba: [0, 1, 0, 0.5],
-            maxParticles: 1000,
-            generationRate: 0.25,
-            angleRage: [-2 * Math.PI, 2 * Math.PI],
-            origin: [-1, -1],
-            speedRange: [0.01, 0.1],
-            ageRange: [0.01, 0.5],
-            forceField: [0, 0],
           }}
         />
       </body>
