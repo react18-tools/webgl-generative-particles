@@ -267,7 +267,6 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
   /** Set up observer to observe size changes */
   const observer = new ResizeObserver(entries => {
     const { width, height } = entries[0].contentRect;
-    console.log({ width, height });
     canvas.width = width;
     canvas.height = height;
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
