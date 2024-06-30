@@ -1,8 +1,10 @@
 #version 300 es
 precision mediump float;
 
-out vec4 c;
+uniform vec4 c; /** Particle Color */
+
+out vec4 oC;
 
 void main() {
-  c = vec4(1.0);
+  oC = c;
 }

@@ -12,6 +12,7 @@ const U_RANDOM_RG = "rg";
 const U_FORCE_FIELD = "g"; /** gravity */
 const U_ORIGIN = "o";
 const U_ANGLE_RANGE = "aR";
+const U_PARTICLE_COLOR = "c";
 
 // inputs
 const IN_POSITION = "p";
@@ -30,6 +31,8 @@ let mouseX = 0,
 type Vector2D = [number, number];
 
 export interface ParticlesOptions {
+  /** particle Color @defaultValue [1, 0, 0, 1] -> red */
+  rgba?: [number, number, number, number];
   /** @defaultValue 100_000 */
   maxParticles?: number;
   /** @defaultValue 0.5 */
@@ -50,6 +53,7 @@ export interface ParticlesOptions {
 }
 
 const defaultOptions: ParticlesOptions = {
+  rgba: [1, 0, 0, 1],
   maxParticles: 100_000,
   generationRate: 0.5,
   forceField: [0, -0.1],
@@ -247,6 +251,8 @@ const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
     gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER, 0, null);
     gl.bindVertexArray(vertexArrayObjects[readIndex + 2]);
     gl.useProgram(renderProgram);
+    // skipcq: JS-0339 -- set in default options
+    gl.uniform4f(gl.getUniformLocation(renderProgram, U_PARTICLE_COLOR), ...options.rgba!);
     gl.drawArrays(gl.POINTS, 0, bornParticles);
     [readIndex, writeIndex] = [writeIndex, readIndex];
 
