@@ -1,7 +1,7 @@
-import updateVertexShaderSource from "./shaders/update-vert.glsl";
-import updateFragmentShaderSource from "./shaders/update-frag.glsl";
-import renderVertexShaderSource from "./shaders/render-vert.glsl";
-import renderFragmentShaderSource from "./shaders/render-frag.glsl";
+import updateVertexShaderSource from "./shaders/update-vert.glsl?raw";
+import updateFragmentShaderSource from "./shaders/update-frag.glsl?raw";
+import renderVertexShaderSource from "./shaders/render-vert.glsl?raw";
+import renderFragmentShaderSource from "./shaders/render-frag.glsl?raw";
 
 /** shader names */
 // Uniforms
