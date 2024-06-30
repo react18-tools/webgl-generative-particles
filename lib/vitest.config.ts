@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["vitest-webgl-canvas-mock"],
+    setupFiles: [],
     coverage: {
       include: ["src/**"],
       // ignore simulator until proper webgl2 mocks is found or created
