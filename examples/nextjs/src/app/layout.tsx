@@ -23,15 +23,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <Particles
           fullScreenOverlay
           options={{
-            speedRange: [200, 250],
-            maxParticles: 10000,
-            generationRate: 0.2,
-            angleRage: [Math.PI / 4, (3 * Math.PI) / 4],
-            forceField: [0, -0.02],
-            ageRange: [0.2, 0.5],
+            rgba: [0, 1, 0, 0.5],
+            maxParticles: 1000,
+            generationRate: 0.25,
+            angleRage: [-2 * Math.PI, 2 * Math.PI],
+            origin: [-1, -1],
+            speedRange: [0.01, 0.1],
+            ageRange: [0.01, 0.5],
+            forceField: [0, 0],
           }}
         />
-        <Particles style={{ height: "500px", width: "600px" }} />
       </body>
     </html>
   );
