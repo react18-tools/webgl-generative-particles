@@ -42,8 +42,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(typedoc@0.26.3(typescript@5.5.2))
       typedoc-plugin-mdn-links:
-        specifier: ^3.2.1
-        version: 3.2.1(typedoc@0.26.3(typescript@5.5.2))
+        specifier: ^3.2.2
+        version: 3.2.2(typedoc@0.26.3(typescript@5.5.2))
       typedoc-plugin-missing-exports:
         specifier: ^3.0.0
         version: 3.0.0(typedoc@0.26.3(typescript@5.5.2))
@@ -4659,8 +4659,8 @@ packages:
     peerDependencies:
       typedoc: ^0.25.7
 
-  typedoc-plugin-mdn-links@3.2.1:
-    resolution: {integrity: sha512-l76VJKKhOxCYXnb16aV6nAQG5JCsuStqviNFmgzhS9dW73nqm3/1MO9497+0KlDTOPO3o+R2uVXq87d2cDy/hg==}
+  typedoc-plugin-mdn-links@3.2.2:
+    resolution: {integrity: sha512-3xlxS32c29Mey5SxqgCEF1lYYceQyoILhJM0Ewh2ISW8Ql3NzhC3SGpuvft4YtzpZIdB+YR7aIMkhlDquA0M+Q==}
     peerDependencies:
       typedoc: '>= 0.23.14 || 0.24.x || 0.25.x || 0.26.x'
 
@@ -5016,8 +5016,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  yocto-queue@1.1.0:
-    resolution: {integrity: sha512-cMojmlnwkAgIXqga+2sXshlgrrcI0QEPJ5n58pEvtuFo4PaekfomlCudArDD7hj8Hkswjl0/x4eu4q+Xa0WFgQ==}
+  yocto-queue@1.1.1:
+    resolution: {integrity: sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==}
     engines: {node: '>=12.20'}
 
   zwitch@2.0.4:
@@ -9385,7 +9385,7 @@ snapshots:
 
   p-limit@5.0.0:
     dependencies:
-      yocto-queue: 1.1.0
+      yocto-queue: 1.1.1
 
   p-locate@4.1.0:
     dependencies:
@@ -10418,7 +10418,7 @@ snapshots:
     dependencies:
       typedoc: 0.26.3(typescript@5.5.2)
 
-  typedoc-plugin-mdn-links@3.2.1(typedoc@0.26.3(typescript@5.5.2)):
+  typedoc-plugin-mdn-links@3.2.2(typedoc@0.26.3(typescript@5.5.2)):
     dependencies:
       typedoc: 0.26.3(typescript@5.5.2)
 
@@ -10852,6 +10852,6 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  yocto-queue@1.1.0: {}
+  yocto-queue@1.1.1: {}
 
   zwitch@2.0.4: {}
