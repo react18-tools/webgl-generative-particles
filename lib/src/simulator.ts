@@ -3,46 +3,53 @@ import updateFragmentShaderSource from "./shaders/update-frag.glsl?raw";
 import renderVertexShaderSource from "./shaders/render-vert.glsl?raw";
 import renderFragmentShaderSource from "./shaders/render-frag.glsl?raw";
 
+// constnats
+const PI = Math.PI;
 /** shader names */
 // Uniforms
 const U_DT = "dt";
 const U_RANDOM_RG = "rg";
 const U_FORCE_FIELD = "g"; /** gravity */
 const U_ORIGIN = "o";
+const U_ANGLE_RANGE = "aR";
 
 // inputs
 const IN_POSITION = "p";
-const IN_AGE = "a";
+const IN_LIFE = "l";
 const IN_VELOCITY = "v";
 
 // outputs
 const OUT_POSITION = "oP";
-const OUT_AGE = "oA";
+const OUT_LIFE = "oL";
 const OUT_VELOCITY = "oV";
 
 /** module scoped global variables/constants */
 let mouseX = 0,
   mouseY = 0;
 
+type Vector2D = [number, number];
+
 export interface ParticlesOptions {
   maxParticles?: number;
   generationRate?: number;
   overlay?: boolean;
   mouseOff?: boolean;
+  /** min and max Angles in radians: -Math.PI to Math.PI */
+  angleRage?: [number, number];
   /** todo */
   /** min and max age of particles */
   ageRange?: [number, number];
   /** [minSpeed, maxSpeed] */
   speedRange?: [number, number];
-  /** min and max Angles in radians: -Math.PI to Math.PI */
-  angleRage?: [number, number];
-  /** todo: WIP constant force [fx, fy, fz] or a force field texture */
-  forceField?: [number, number, number] | number[][] | string;
+  /** todo: WIP constant force [fx, fy] or a force field texture */
+  forceField?: Vector2D; //| Vector[][] | string;
 }
 
 const defaultOptions: ParticlesOptions = {
   maxParticles: 100_000,
   generationRate: 0.5,
+  forceField: [0, -0.1],
+  angleRage: [-PI, PI],
 };
 
 const getInitialData = (maxParticles: number) => {
@@ -58,7 +65,9 @@ const randomRGData = (sizeX: number, sizeY: number): Uint8Array => {
 };
 
 /** Particles simulator */
-const simulate = (gl: WebGL2RenderingContext, options = defaultOptions) => {
+const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
+  /** Normalize options */
+  options.angleRage?.map(a => a % PI).sort();
   /** Create shader */
   const createShader = (type: number, source: string): WebGLShader => {
     const shader = gl.createShader(type);
@@ -107,7 +116,7 @@ const simulate = (gl: WebGL2RenderingContext, options = defaultOptions) => {
 
   const updateProgram = createProgram(updateVertexShaderSource, updateFragmentShaderSource, [
     OUT_POSITION,
-    OUT_AGE,
+    OUT_LIFE,
     OUT_VELOCITY,
   ]);
 
@@ -131,7 +140,7 @@ const simulate = (gl: WebGL2RenderingContext, options = defaultOptions) => {
       nVect: 2,
     },
     {
-      location: gl.getAttribLocation(updateProgram, IN_AGE),
+      location: gl.getAttribLocation(updateProgram, IN_LIFE),
       nVect: 1,
     },
     {
@@ -214,8 +223,11 @@ const simulate = (gl: WebGL2RenderingContext, options = defaultOptions) => {
     gl.useProgram(updateProgram);
 
     setUniform(U_DT, dt / 1000);
-    setUniform(U_FORCE_FIELD, 0, -0.1);
+    // skipcq: JS-0339 -- forcefield is always set by the default options
+    setUniform(U_FORCE_FIELD, ...options.forceField!);
     setUniform(U_ORIGIN, mouseX, mouseY);
+    // skipcq: JS-0339 -- set in default options
+    setUniform(U_ANGLE_RANGE, ...options.angleRage!);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
     setUniform(U_RANDOM_RG, 0);
