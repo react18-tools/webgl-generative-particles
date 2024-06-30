@@ -15,6 +15,6 @@
 	"editor.formatOnSaveMode": "file",
 	"mayank1513.trello-kanban.Workspace.filePath": ".tkb",
 	"[glsl]": {
-		"editor.defaultFormatter": "circledev.glsl-canvas"
+		"editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
 	}
 }
