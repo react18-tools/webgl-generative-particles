@@ -30,11 +30,15 @@ let mouseX = 0,
 type Vector2D = [number, number];
 
 export interface ParticlesOptions {
+  /** @defaultValue 100_000 */
   maxParticles?: number;
+  /** @defaultValue 0.5 */
   generationRate?: number;
+  /** @defaultValue false */
   overlay?: boolean;
+  /** @defaultValue false */
   mouseOff?: boolean;
-  /** min and max Angles in radians: -Math.PI to Math.PI */
+  /** min and max Angles in radians: @defaultValue [-Math.PI, Math.PI] */
   angleRage?: [number, number];
   /** todo */
   /** min and max age of particles */
