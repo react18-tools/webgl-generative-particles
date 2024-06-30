@@ -7,7 +7,7 @@ import { Particles } from "webgl-generative-particles/dist/react";
 const code = `
 // WIP - caution work in progress!
 <div className="${styles.center}">
- <Particles options={{mouseOff: true}} />
+ <Particles options={{mouseOff: true, maxParticles: 10_000, speedRange: [0.6, 1.2]}} />
 </div>
 `;
 
