@@ -47,7 +47,7 @@ const defaultOptions: ParticlesOptions = {
 
 const getInitialData = (maxParticles: number) => {
   const data = [];
-  for (let i = 0; i < maxParticles; i++) data.push(0.0, 0.0, 1.0, 0.0, 0.0);
+  for (let i = 0; i < maxParticles; i++) data.push(0, 0, 1, 0, 0);
   return data;
 };
 
@@ -171,7 +171,7 @@ const simulate = (gl: WebGL2RenderingContext, options = defaultOptions) => {
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
   });
 
-  gl.clearColor(1.0, 0, 0, 1);
+  gl.clearColor(0, 0, 0, 0);
 
   const rgNoiseTexture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
@@ -213,12 +213,12 @@ const simulate = (gl: WebGL2RenderingContext, options = defaultOptions) => {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.useProgram(updateProgram);
 
-    setUniform(U_DT, dt / 1000.0);
-    setUniform(U_FORCE_FIELD, 0.0, -0.1);
+    setUniform(U_DT, dt / 1000);
+    setUniform(U_FORCE_FIELD, 0, -0.1);
     setUniform(U_ORIGIN, mouseX, mouseY);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
-    setUniform(U_RANDOM_RG, 0.0);
+    setUniform(U_RANDOM_RG, 0);
 
     gl.bindVertexArray(vertexArrayObjects[readIndex]);
     gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER, 0, buffers[writeIndex]);
