@@ -27,10 +27,6 @@ const OUT_POSITION = "oP";
 const OUT_LIFE = "oL";
 const OUT_VELOCITY = "oV";
 
-/** module scoped global variables/constants */
-let mouseX = 0,
-  mouseY = 0;
-
 type Vector2D = [number, number];
 
 export interface ParticlesOptions {
@@ -50,6 +46,10 @@ export interface ParticlesOptions {
   ageRange?: [number, number];
   /** [minSpeed, maxSpeed] */
   speedRange?: [number, number];
+  /** Initial origin -> Will update as per mouse position when mouse moved if mouseOff is not set.
+   * @defaultValue [0, 0]
+   */
+  origin?: [number, number];
   /** todo */
   /** todo: WIP constant force [fx, fy] or a force field texture */
   forceField?: Vector2D; //| Vector[][] | string;
@@ -65,12 +65,14 @@ const defaultOptions: ParticlesOptions = {
   ageRange: [2, 10],
 };
 
+/** generate initial data for the simulation */
 const getInitialData = (maxParticles: number) => {
   const data = [];
-  for (let i = 0; i < maxParticles; i++) data.push(0, 0, 1, 0, 0);
+  for (let i = 0; i < maxParticles; i++) data.push(0, 0, 0.1, 0, 0);
   return data;
 };
 
+/** generate random RG data for source of randomness within the simulation */
 const randomRGData = (sizeX: number, sizeY: number): Uint8Array => {
   const data = [];
   for (let i = 0; i < sizeX * sizeY; i++) data.push(random() * 255.0, random() * 255.0);
@@ -79,14 +81,15 @@ const randomRGData = (sizeX: number, sizeY: number): Uint8Array => {
 
 /** Particles simulator */
 const simulate = (
-  canvas: HTMLCanvasElement,
+  _canvas: HTMLCanvasElement,
   gl: WebGL2RenderingContext,
   options: ParticlesOptions,
 ) => {
-  /** Normalize options */
-  options.angleRage?.map(a => a % PI).sort();
-  options.ageRange?.sort();
-  options.speedRange?.sort();
+  /** todo Normalize options
+   * canvas positions are between -1 to 1 on all axes
+   */
+  // skipcq: JS-0339 -- defined in default options
+  const angleRage = options.angleRage! as [number, number];
   /** Create shader */
   const createShader = (type: number, source: string): WebGLShader => {
     const shader = gl.createShader(type);
@@ -105,6 +108,7 @@ const simulate = (
     return shader;
   };
 
+  /** Create program */
   const createProgram = (
     vertexShaderSource: string,
     fragmentShaderSource: string,
@@ -227,11 +231,17 @@ const simulate = (
     const location = gl.getUniformLocation(updateProgram, name);
     y ? gl.uniform2f(location, x, y) : gl.uniform1f(location, x);
   };
-  let bornParticles = 0;
   let prevT = 0;
+  let bornParticles = 0;
   let readIndex = 0;
   let writeIndex = 1;
+  let mouseX = 0;
+  let mouseY = 0;
 
+  const setOrigin = (x: number, y: number): void => {
+    mouseX = x;
+    mouseY = y;
+  };
   /** The render loop */
   const render = (timeStamp: number): void => {
     let dt = timeStamp - prevT;
@@ -246,13 +256,12 @@ const simulate = (
     // skipcq: JS-0339 -- forcefield is always set by the default options
     setUpdateUniform(U_FORCE_FIELD, ...options.forceField!);
     setUpdateUniform(U_ORIGIN, mouseX, mouseY);
-    // skipcq: JS-0339 -- set in default options
-    setUpdateUniform(U_ANGLE_RANGE, ...options.angleRage!);
+    setUpdateUniform(U_ANGLE_RANGE, ...angleRage);
     // skipcq: JS-0339 -- set in default options
     setUpdateUniform(U_LIFE_RANGE, ...options.ageRange!);
     // skipcq: JS-0339 -- set in default options
     const speedRange = options.speedRange!;
-    setUpdateUniform(U_SPEED_RANGE, speedRange[0] / canvas.width, speedRange[1] / canvas.height);
+    setUpdateUniform(U_SPEED_RANGE, speedRange[0], speedRange[1]);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
     setUpdateUniform(U_RANDOM_RG, 0);
@@ -277,7 +286,7 @@ const simulate = (
       // skipcq: JS-0339
       options.maxParticles!,
       // skipcq: JS-0339
-      Math.floor(bornParticles + options.maxParticles! * options.generationRate!),
+      Math.floor(bornParticles + dt * options.generationRate!),
     );
 
     requestAnimationFrame(ts => {
@@ -288,6 +297,7 @@ const simulate = (
   requestAnimationFrame(ts => {
     render(ts);
   });
+  return setOrigin;
 };
 
 /**
@@ -301,22 +311,22 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
   const gl = canvas.getContext("webgl2");
   if (!gl) return undefined;
 
-  simulate(canvas, gl, { ...defaultOptions, ...options });
+  const setOrigin = simulate(canvas, gl, { ...defaultOptions, ...options });
+  options?.origin && setOrigin(...options.origin);
 
   /** Set up observer to observe size changes */
   const observer = new ResizeObserver(entries => {
     const { width, height } = entries[0].contentRect;
     canvas.width = width;
     canvas.height = height;
-    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+    gl.viewport(0, 0, canvas.width, canvas.height);
   });
   observer.observe(canvas);
 
   const target = options?.overlay ? window : canvas;
   /** update mouse position */
   const onMouseMove = (e: MouseEvent) => {
-    mouseX = (e.clientX / canvas.width) * 2 - 1;
-    mouseY = 1 - (e.clientY / canvas.height) * 2;
+    setOrigin((e.clientX / canvas.width) * 2 - 1, 1 - (e.clientY / canvas.height) * 2);
   };
 
   // @ts-expect-error -- strange type-error
@@ -327,14 +337,4 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
     // @ts-expect-error -- strange type-error
     !options?.mouseOff && target.removeEventListener("mousemove", onMouseMove);
   };
-};
-
-/**
- * Should allow users to set origin manually?
- */
-
-/** Extra functions */
-export const setOrigin = (x: number, y: number) => {
-  mouseX = x;
-  mouseY = y;
 };

@@ -1,7 +1,7 @@
 #version 300 es
 precision mediump float;
 
-uniform float dt; /** time delta */
+uniform float dt;/** time delta */
 uniform sampler2D rg; /** random rg */
 uniform vec2 g; /** gravity - forceField */
 uniform vec2 o; /** origin*/
@@ -18,7 +18,7 @@ out float oL;
 out vec2 oV;
 
 void main() {
-  if(l <= 0.0f) {
+  if(l <= 0.f) {
     ivec2 ij = ivec2(gl_VertexID % 512, gl_VertexID / 512);
     vec2 rd = texelFetch(rg, ij, 0).rg;
     float th = aR.x + rd.r * (aR.y - aR.x);
@@ -26,7 +26,7 @@ void main() {
     float y = sin(th);
     oP = o;
     oL = lR.x + rd.r * (lR.y - lR.x);
-    oV = vec2(x, y) * (sR.x + (sR.y - sR.x) * rd.g);
+    oV = vec2(x, y) * (sR.x + rd.g * (sR.y - sR.x));
   } else {
     oP = p + v * dt;
     oL = l - dt;
