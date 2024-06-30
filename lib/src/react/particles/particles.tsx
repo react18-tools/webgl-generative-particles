@@ -24,14 +24,18 @@ export const Particles = ({ options, overlay, fullScreenOverlay, ...props }: Par
     ? { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" }
     : {};
 
+  const resolvedOverlay = overlay || fullScreenOverlay;
+
   const style = (
-    overlay ? { pointerEvents: "none", ...fsStyles, ...props.style } : props.style
+    resolvedOverlay ? { pointerEvents: "none", ...fsStyles, ...props.style } : props.style
   ) as CSSProperties;
 
   useEffect(
     () =>
-      canvasRef.current ? renderParticles(canvasRef.current, { ...options, overlay }) : undefined,
-    [options, overlay],
+      canvasRef.current
+        ? renderParticles(canvasRef.current, { ...options, overlay: resolvedOverlay })
+        : undefined,
+    [options, resolvedOverlay],
   );
   return <canvas ref={canvasRef} style={style} {...props} data-testid="particles" />;
 };
