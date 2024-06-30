@@ -1,32 +1,35 @@
 #version 300 es
 precision mediump float;
 
-uniform float dt; /** time delta */
+uniform float dt;/** time delta */
 uniform sampler2D rg; /** random rg */
-uniform vec2 g; /** gravity */
+uniform vec2 g; /** gravity - forceField */
 uniform vec2 o; /** origin*/
+uniform vec2 aR; /** Angle Range */
+uniform vec2 sR; /** scalar Speed Range pixels/sec */
+uniform vec2 lR; /** life range */
 
 in vec2 p; /** position */
-in float a; /** Age */
+in float l; /** Life */
 in vec2 v; /** Velocity */
 
 out vec2 oP;
-out float oA;
+out float oL;
 out vec2 oV;
 
 void main() {
-  if(a <= 0.0) {
+  if(l <= 0.f) {
     ivec2 ij = ivec2(gl_VertexID % 512, gl_VertexID / 512);
     vec2 rd = texelFetch(rg, ij, 0).rg;
-    float th = rd.r * 6.2832;
+    float th = aR.x + rd.r * (aR.y - aR.x);
     float x = cos(th);
     float y = sin(th);
     oP = o;
-    oA = rd.r + rd.g;
-    oV = vec2(x, y) * rd.g;
+    oL = lR.x + rd.r * (lR.y - lR.x);
+    oV = vec2(x, y) * (sR.x + rd.g * (sR.y - sR.x));
   } else {
     oP = p + v * dt;
-    oA = a - dt;
+    oL = l - dt;
     oV = v + g * dt;
   }
 }

@@ -2,7 +2,7 @@
 
 [![test](https://github.com/react18-tools/webgl-generative-particles/actions/workflows/test.yml/badge.svg)](https://github.com/react18-tools/webgl-generative-particles/actions/workflows/test.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/aa896ec14c570f3bb274/maintainability)](https://codeclimate.com/github/react18-tools/webgl-generative-particles/maintainability) [![codecov](https://codecov.io/gh/react18-tools/webgl-generative-particles/graph/badge.svg)](https://codecov.io/gh/react18-tools/webgl-generative-particles) [![Version](https://img.shields.io/npm/v/webgl-generative-particles.svg?colorB=green)](https://www.npmjs.com/package/webgl-generative-particles) [![Downloads](https://img.jsdelivr.com/img.shields.io/npm/d18m/webgl-generative-particles.svg)](https://www.npmjs.com/package/webgl-generative-particles) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/webgl-generative-particles) [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 
-Webgl Generative Particles is a comprehensive library designed to unlock the full potential of React 18 server components. It provides customizable loading animation components and a fullscreen loader container, seamlessly integrating with React and Next.js.
+"webgl-generative-particles" is an efficient WebGL-based generative particle system simulator designed for both React and vanilla JS applications. This system follows the mouse pointer, providing interactive and dynamic visual effects. It offers seamless integration with React (including React 18 and beyond) and Next.js, making it an ideal choice for modern frontend development. The simulator is customizable, compatible with various frameworks, and delivers high performance and real-time rendering for progressive web development.
 
 ✅ Fully Treeshakable (import from `webgl-generative-particles/client/loader-container`)
 
@@ -118,6 +118,18 @@ export default MyComponent() {
 	...
 }
 ```
+
+## Creadits
+
+I have learnt the concepts from the following blogs and tutorials.
+
+- https://experiments.withgoogle.com/search?q=particles
+- https://nullprogram.com/blog/2014/06/29/
+- https://gpfault.net/posts/webgl2-particles.txt.html
+- https://umbcgaim.wordpress.com/2010/07/01/gpu-random-numbers/
+- https://www.youtube.com/playlist?list=PLjcVFFANLS5zH_PeKC6I8p0Pt1hzph_rt
+- https://stackoverflow.com/q/15215968/23175171
+- https://stackoverflow.com/q/71021772/23175171
 
 ## License
 

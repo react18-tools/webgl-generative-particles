@@ -21,7 +21,6 @@ export default defineConfig(
           setup(build) {
             if (!options.watch)
               build.onLoad({ filter: /simulator\.ts$/, namespace: "file" }, args => {
-                console.log("utils ----- >", args.path);
                 const text = fs.readFileSync(args.path, "utf8");
                 const contents = text
                   .replace(/if \(!gl\.[^}]*}/gm, "")

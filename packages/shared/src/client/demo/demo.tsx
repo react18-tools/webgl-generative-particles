@@ -2,19 +2,19 @@
 
 import styles from "./demo.module.scss";
 import { LiveProvider, LiveEditor, LivePreview } from "react-live";
-import { Dots1, Dots2, Bars1, Bars2 } from "react18-loaders/dist/server";
+import { Particles } from "webgl-generative-particles/dist/react";
 
 const code = `
-// available components Dots1, Dots2, Bars1, Bars2
+// WIP - caution work in progress!
 <div className="${styles.center}">
- <Bars1 color="var(--text-color)"/>
+ <Particles options={{mouseOff: true}} />
 </div>
 `;
 
 /** React live demo */
 export function Demo() {
   return (
-    <LiveProvider code={code} scope={{ Dots1, Dots2, Bars1, Bars2 }}>
+    <LiveProvider code={code} scope={{ Particles }}>
       <div className={styles.demo}>
         <LiveEditor className={styles.code} />
         <LivePreview className={styles.preview} />

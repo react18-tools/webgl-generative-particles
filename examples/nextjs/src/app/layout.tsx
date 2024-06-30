@@ -20,7 +20,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           {children}
         </Layout>
         <GlobalLoader />
-        <Particles fullScreenOverlay />
+        <Particles
+          fullScreenOverlay
+          options={{
+            rgba: [0, 1, 0, 0.5],
+          }}
+        />
       </body>
     </html>
   );
