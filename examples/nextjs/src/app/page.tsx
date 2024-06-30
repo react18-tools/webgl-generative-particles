@@ -1,4 +1,3 @@
-import MyButton from "./button";
 import { LandingPage } from "@repo/shared/dist/server";
 import { Demo } from "@repo/shared";
 import { Particles } from "webgl-generative-particles/dist/react";
@@ -26,7 +25,6 @@ export default function Page(): JSX.Element {
         }}
       />
       <Demo />
-      <MyButton />
     </LandingPage>
   );
 }
