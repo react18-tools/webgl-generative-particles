@@ -5,6 +5,7 @@ import renderFragmentShaderSource from "./shaders/render-frag.glsl?raw";
 
 // constnats
 const PI = Math.PI;
+const random = Math.random;
 /** shader names */
 // Uniforms
 const U_DT = "dt";
@@ -12,6 +13,8 @@ const U_RANDOM_RG = "rg";
 const U_FORCE_FIELD = "g"; /** gravity */
 const U_ORIGIN = "o";
 const U_ANGLE_RANGE = "aR";
+const U_SPEED_RANGE = "sR";
+const U_LIFE_RANGE = "lR";
 const U_PARTICLE_COLOR = "c";
 
 // inputs
@@ -43,21 +46,23 @@ export interface ParticlesOptions {
   mouseOff?: boolean;
   /** min and max Angles in radians: @defaultValue [-Math.PI, Math.PI] */
   angleRage?: [number, number];
-  /** todo */
-  /** min and max age of particles */
+  /** min and max age of particles in seconds */
   ageRange?: [number, number];
   /** [minSpeed, maxSpeed] */
   speedRange?: [number, number];
+  /** todo */
   /** todo: WIP constant force [fx, fy] or a force field texture */
   forceField?: Vector2D; //| Vector[][] | string;
 }
 
 const defaultOptions: ParticlesOptions = {
   rgba: [1, 0, 0, 1],
-  maxParticles: 100_000,
-  generationRate: 0.5,
-  forceField: [0, -0.1],
+  maxParticles: 1000_000,
+  generationRate: 1,
+  forceField: [0, -0.25],
   angleRage: [-PI, PI],
+  speedRange: [0.5, 1],
+  ageRange: [2, 10],
 };
 
 const getInitialData = (maxParticles: number) => {
@@ -68,14 +73,20 @@ const getInitialData = (maxParticles: number) => {
 
 const randomRGData = (sizeX: number, sizeY: number): Uint8Array => {
   const data = [];
-  for (let i = 0; i < sizeX * sizeY; ++i) data.push(Math.random() * sizeX, Math.random() * sizeX);
+  for (let i = 0; i < sizeX * sizeY; i++) data.push(random() * 255.0, random() * 255.0);
   return new Uint8Array(data);
 };
 
 /** Particles simulator */
-const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
+const simulate = (
+  canvas: HTMLCanvasElement,
+  gl: WebGL2RenderingContext,
+  options: ParticlesOptions,
+) => {
   /** Normalize options */
   options.angleRage?.map(a => a % PI).sort();
+  options.ageRange?.sort();
+  options.speedRange?.sort();
   /** Create shader */
   const createShader = (type: number, source: string): WebGLShader => {
     const shader = gl.createShader(type);
@@ -237,6 +248,11 @@ const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
     setUpdateUniform(U_ORIGIN, mouseX, mouseY);
     // skipcq: JS-0339 -- set in default options
     setUpdateUniform(U_ANGLE_RANGE, ...options.angleRage!);
+    // skipcq: JS-0339 -- set in default options
+    setUpdateUniform(U_LIFE_RANGE, ...options.ageRange!);
+    // skipcq: JS-0339 -- set in default options
+    const speedRange = options.speedRange!;
+    setUpdateUniform(U_SPEED_RANGE, speedRange[0] / canvas.width, speedRange[1] / canvas.height);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
     setUpdateUniform(U_RANDOM_RG, 0);
@@ -285,7 +301,7 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
   const gl = canvas.getContext("webgl2");
   if (!gl) return undefined;
 
-  simulate(gl, { ...defaultOptions, ...options });
+  simulate(canvas, gl, { ...defaultOptions, ...options });
 
   /** Set up observer to observe size changes */
   const observer = new ResizeObserver(entries => {

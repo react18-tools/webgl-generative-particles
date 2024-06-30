@@ -16,11 +16,6 @@
       "description": "Add `NPM_AUTH_TOKEN` to repository secrets to automate package publishing\n  - Log in to your [`npm` account](https://www.npmjs.com/login) and create an automation token\n  - Create a new repository secret `NPM_AUTH_TOKEN`",
       "columnId": "column-todo"
     },
-    "_BfuX7quWBANpDK1bI7YM": {
-      "id": "_BfuX7quWBANpDK1bI7YM",
-      "description": "Update description in `lib/package.json`",
-      "columnId": "column-todo"
-    },
     "dC7QDBLH8BmHUfaYmIt81": {
       "id": "dC7QDBLH8BmHUfaYmIt81",
       "description": "(Optional) Add Repo Stats by visiting and setting up [repobeats](https://repobeats.axiom.co/)",
@@ -68,12 +63,7 @@
     },
     "9-0sxOV9Cw-jVjngwbWKm": {
       "id": "9-0sxOV9Cw-jVjngwbWKm",
-      "description": "Add colors",
-      "columnId": "column-KpcfQ3OwiDZ1c11EOpcsT"
-    },
-    "GJ4z5bji9Cpt9LjmhSwkW": {
-      "id": "GJ4z5bji9Cpt9LjmhSwkW",
-      "description": "fix angles",
+      "description": "Add multiple colors",
       "columnId": "column-KpcfQ3OwiDZ1c11EOpcsT"
     }
   },
@@ -85,7 +75,6 @@
         "RX4J5v4y5IOe_ucf8pMRT",
         "MLLUsAhCKaKxvEXFY0HSq",
         "gMYfaAh2RABMP8uZRQgNx",
-        "_BfuX7quWBANpDK1bI7YM",
         "dC7QDBLH8BmHUfaYmIt81",
         "P_NrSJQ8m91Odgz8E1fS6",
         "1dRWJhy45E1Rq5wZAmPHt",
@@ -101,8 +90,7 @@
       "id": "column-KpcfQ3OwiDZ1c11EOpcsT",
       "title": "Backlog",
       "tasksIds": [
-        "9-0sxOV9Cw-jVjngwbWKm",
-        "GJ4z5bji9Cpt9LjmhSwkW"
+        "9-0sxOV9Cw-jVjngwbWKm"
       ]
     },
     {

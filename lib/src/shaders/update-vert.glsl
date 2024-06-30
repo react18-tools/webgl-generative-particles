@@ -6,6 +6,8 @@ uniform sampler2D rg; /** random rg */
 uniform vec2 g; /** gravity - forceField */
 uniform vec2 o; /** origin*/
 uniform vec2 aR; /** Angle Range */
+uniform vec2 sR; /** scalar Speed Range pixels/sec */
+uniform vec2 lR; /** life range */
 
 in vec2 p; /** position */
 in float l; /** Life */
@@ -16,15 +18,15 @@ out float oL;
 out vec2 oV;
 
 void main() {
-  if(l <= 0.0) {
+  if(l <= 0.0f) {
     ivec2 ij = ivec2(gl_VertexID % 512, gl_VertexID / 512);
     vec2 rd = texelFetch(rg, ij, 0).rg;
     float th = aR.x + rd.r * (aR.y - aR.x);
     float x = cos(th);
     float y = sin(th);
     oP = o;
-    oL = rd.r + rd.g;
-    oV = vec2(x, y) * rd.g;
+    oL = lR.x + rd.r * (lR.y - lR.x);
+    oV = vec2(x, y) * (sR.x + (sR.y - sR.x) * rd.g);
   } else {
     oP = p + v * dt;
     oL = l - dt;

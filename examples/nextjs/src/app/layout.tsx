@@ -20,7 +20,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           {children}
         </Layout>
         <GlobalLoader />
-        <Particles fullScreenOverlay />
+        <Particles
+          fullScreenOverlay
+          options={{
+            speedRange: [200, 250],
+            maxParticles: 10000,
+            generationRate: 0.2,
+            angleRage: [Math.PI / 4, (3 * Math.PI) / 4],
+            forceField: [0, -0.02],
+            ageRange: [0.2, 0.5],
+          }}
+        />
+        <Particles style={{ height: "500px", width: "600px" }} />
       </body>
     </html>
   );
