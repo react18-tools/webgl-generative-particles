@@ -1,11 +1,14 @@
-# Webgl Generative Particles <img src="https://github.com/react18-tools/webgl-generative-particles/blob/main/popper.png?raw=true" style="height: 40px"/>
+# WebGL Generative Particles <img src="https://github.com/react18-tools/webgl-generative-particles/blob/main/popper.png?raw=true" style="height: 40px"/>
 
-> This library is a Work In Progress... Feel free to request features, report bugs or contribute.
-> We will try to keep the APIs stable, however, some APIs might change.
+> This library is a Work In Progress. Feel free to request features, report bugs, or contribute. We aim to keep the APIs stable, though some changes may occur.
 
 [![test](https://github.com/react18-tools/webgl-generative-particles/actions/workflows/test.yml/badge.svg)](https://github.com/react18-tools/webgl-generative-particles/actions/workflows/test.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/17e43ef7ca4593a18757/maintainability)](https://codeclimate.com/github/react18-tools/webgl-generative-particles/maintainability) [![codecov](https://codecov.io/gh/react18-tools/webgl-generative-particles/graph/badge.svg)](https://codecov.io/gh/react18-tools/webgl-generative-particles) [![Version](https://img.shields.io/npm/v/webgl-generative-particles.svg?colorB=green)](https://www.npmjs.com/package/webgl-generative-particles) [![Downloads](https://img.jsdelivr.com/img.shields.io/npm/d18m/webgl-generative-particles.svg)](https://www.npmjs.com/package/webgl-generative-particles) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/webgl-generative-particles) [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 
 "webgl-generative-particles" is an efficient WebGL-based generative particle system simulator designed for both React and vanilla JS applications. This system follows the mouse pointer, providing interactive and dynamic visual effects. It offers seamless integration with React (including React 18 and beyond) and Next.js, making it an ideal choice for modern frontend development. The simulator is customizable, compatible with various frameworks, and delivers high performance and real-time rendering for progressive web development.
+
+> Check out the live demo at - https://webgl-generative-particles.vercel.app/
+
+## Features
 
 ✅ Fully Treeshakable (import from `webgl-generative-particles/react`)
 
@@ -25,17 +28,19 @@
 
 ### Installation
 
+Using pnpm:
+
 ```bash
 $ pnpm add webgl-generative-particles
 ```
 
-**_or_**
+Using npm:
 
 ```bash
 $ npm install webgl-generative-particles
 ```
 
-**_or_**
+Using yarn:
 
 ```bash
 $ yarn add webgl-generative-particles
@@ -58,35 +63,32 @@ import { Particles } from "webgl-generative-particles/react";
 
 ```ts
 export interface ParticlesOptions {
-  /** particle Color @defaultValue [1, 0, 0, 1] -> red */
+  /** Particle Color @defaultValue [1, 0, 0, 1] -> red */
   rgba?: [number, number, number, number];
-  /** @defaultValue 100_000 */
+  /** Maximum number of particles @defaultValue 100_000 */
   maxParticles?: number;
-  /** @defaultValue 0.5 */
+  /** Particle generation rate @defaultValue 0.5 */
   generationRate?: number;
-  /** @defaultValue false */
+  /** Overlay mode @defaultValue false */
   overlay?: boolean;
-  /** @defaultValue false */
+  /** Disable mouse interaction @defaultValue false */
   mouseOff?: boolean;
-  /** min and max Angles in radians: @defaultValue [-Math.PI, Math.PI] */
-  angleRage?: [number, number];
-  /** min and max age of particles in seconds */
+  /** Min and max angles in radians @defaultValue [-Math.PI, Math.PI] */
+  angleRange?: [number, number];
+  /** Min and max age of particles in seconds */
   ageRange?: [number, number];
-  /** [minSpeed, maxSpeed] */
+  /** Speed range [minSpeed, maxSpeed] */
   speedRange?: [number, number];
-  /** Initial origin -> Will update as per mouse position when mouse moved if mouseOff is not set.
-   * @defaultValue [0, 0]
-   */
+  /** Initial origin, will update as per mouse position if mouseOff is not set @defaultValue [0, 0] */
   origin?: [number, number];
-  /** todo */
-  /** todo: WIP constant force [fx, fy] or a force field texture */
+  /** Constant force [fx, fy] or a force field texture (Work In Progress) */
   forceField?: Vector2D; //| Vector[][] | string;
 }
 ```
 
-## Creadits
+## Credits
 
-I have learnt the concepts from the following blogs and tutorials.
+The concepts in this library were learned from the following blogs and tutorials:
 
 - https://experiments.withgoogle.com/search?q=particles
 - https://nullprogram.com/blog/2014/06/29/

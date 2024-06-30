@@ -30,28 +30,25 @@ const OUT_VELOCITY = "oV";
 type Vector2D = [number, number];
 
 export interface ParticlesOptions {
-  /** particle Color @defaultValue [1, 0, 0, 1] -> red */
+  /** Particle Color @defaultValue [1, 0, 0, 1] -> red */
   rgba?: [number, number, number, number];
-  /** @defaultValue 100_000 */
+  /** Maximum number of particles @defaultValue 100_000 */
   maxParticles?: number;
-  /** @defaultValue 0.5 */
+  /** Particle generation rate @defaultValue 0.5 */
   generationRate?: number;
-  /** @defaultValue false */
+  /** Overlay mode @defaultValue false */
   overlay?: boolean;
-  /** @defaultValue false */
+  /** Disable mouse interaction @defaultValue false */
   mouseOff?: boolean;
-  /** min and max Angles in radians: @defaultValue [-Math.PI, Math.PI] */
-  angleRage?: [number, number];
-  /** min and max age of particles in seconds */
+  /** Min and max angles in radians @defaultValue [-Math.PI, Math.PI] */
+  angleRange?: [number, number];
+  /** Min and max age of particles in seconds */
   ageRange?: [number, number];
-  /** [minSpeed, maxSpeed] */
+  /** Speed range [minSpeed, maxSpeed] */
   speedRange?: [number, number];
-  /** Initial origin -> Will update as per mouse position when mouse moved if mouseOff is not set.
-   * @defaultValue [0, 0]
-   */
+  /** Initial origin, will update as per mouse position if mouseOff is not set @defaultValue [0, 0] */
   origin?: [number, number];
-  /** todo */
-  /** todo: WIP constant force [fx, fy] or a force field texture */
+  /** Constant force [fx, fy] or a force field texture (Work In Progress) */
   forceField?: Vector2D; //| Vector[][] | string;
 }
 
@@ -60,7 +57,7 @@ const defaultOptions: ParticlesOptions = {
   maxParticles: 1000,
   generationRate: 0.25,
   // setting range from -PI to PI craetes some patches because of overflows
-  angleRage: [-2 * PI, 2 * PI],
+  angleRange: [-2 * PI, 2 * PI],
   origin: [-1, -1],
   speedRange: [0.01, 0.1],
   ageRange: [0.01, 0.5],
@@ -91,7 +88,7 @@ const simulate = (
    * canvas positions are between -1 to 1 on all axes
    */
   // skipcq: JS-0339 -- defined in default options
-  const angleRage = options.angleRage! as [number, number];
+  const angleRange = options.angleRange! as [number, number];
   /** Create shader */
   const createShader = (type: number, source: string): WebGLShader => {
     const shader = gl.createShader(type);
@@ -240,6 +237,7 @@ const simulate = (
   let mouseX = 0;
   let mouseY = 0;
 
+  /** Set origin - from where all particles are generateds */
   const setOrigin = (x: number, y: number): void => {
     mouseX = x;
     mouseY = y;
@@ -258,7 +256,7 @@ const simulate = (
     // skipcq: JS-0339 -- forcefield is always set by the default options
     setUpdateUniform(U_FORCE_FIELD, ...options.forceField!);
     setUpdateUniform(U_ORIGIN, mouseX, mouseY);
-    setUpdateUniform(U_ANGLE_RANGE, ...angleRage);
+    setUpdateUniform(U_ANGLE_RANGE, ...angleRange);
     // skipcq: JS-0339 -- set in default options
     setUpdateUniform(U_LIFE_RANGE, ...options.ageRange!);
     // skipcq: JS-0339 -- set in default options
