@@ -211,7 +211,8 @@ const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-  const setUniform = (name: string, x: number, y?: number): void => {
+  /** set uniform value for updateProgram */
+  const setUpdateUniform = (name: string, x: number, y?: number): void => {
     const location = gl.getUniformLocation(updateProgram, name);
     y ? gl.uniform2f(location, x, y) : gl.uniform1f(location, x);
   };
@@ -230,15 +231,15 @@ const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.useProgram(updateProgram);
 
-    setUniform(U_DT, dt / 1000);
+    setUpdateUniform(U_DT, dt / 1000);
     // skipcq: JS-0339 -- forcefield is always set by the default options
-    setUniform(U_FORCE_FIELD, ...options.forceField!);
-    setUniform(U_ORIGIN, mouseX, mouseY);
+    setUpdateUniform(U_FORCE_FIELD, ...options.forceField!);
+    setUpdateUniform(U_ORIGIN, mouseX, mouseY);
     // skipcq: JS-0339 -- set in default options
-    setUniform(U_ANGLE_RANGE, ...options.angleRage!);
+    setUpdateUniform(U_ANGLE_RANGE, ...options.angleRage!);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
-    setUniform(U_RANDOM_RG, 0);
+    setUpdateUniform(U_RANDOM_RG, 0);
 
     gl.bindVertexArray(vertexArrayObjects[readIndex]);
     gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER, 0, buffers[writeIndex]);
@@ -278,7 +279,7 @@ const simulate = (gl: WebGL2RenderingContext, options: ParticlesOptions) => {
  *
  * Please handle canvas size as required by your application.
  * @param canvas
- * @returns
+ * @returns (()=>void)
  */
 export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOptions) => {
   const gl = canvas.getContext("webgl2");
@@ -296,6 +297,7 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
   observer.observe(canvas);
 
   const target = options?.overlay ? window : canvas;
+  /** update mouse position */
   const onMouseMove = (e: MouseEvent) => {
     mouseX = (e.clientX / canvas.width) * 2 - 1;
     mouseY = 1 - (e.clientY / canvas.height) * 2;
