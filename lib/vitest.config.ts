@@ -11,7 +11,8 @@ export default defineConfig({
     setupFiles: ["vitest-webgl-canvas-mock"],
     coverage: {
       include: ["src/**"],
-      exclude: ["src/**/index.ts", "src/**/declaration.d.ts"],
+      // ignore simulator until proper webgl2 mocks is found or created
+      exclude: ["src/**/index.ts", "src/**/simulator.ts", "src/**/declaration.d.ts"],
       reporter: ["text", "json", "clover", "html"],
     },
   },
