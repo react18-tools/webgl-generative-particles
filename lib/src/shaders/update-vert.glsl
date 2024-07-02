@@ -1,5 +1,4 @@
 #version 300 es
-precision mediump float;
 
 uniform float dt;/** time delta */
 uniform sampler2D rg; /** random rg */
@@ -19,15 +18,15 @@ out vec2 oV;
 
 void main() {
   if(l <= 0.f) {
-    int i = gl_VertexID;
-    ivec2 ij = ivec2(i % 200, i / 200);
-    vec2 rd = texelFetch(rg, ij, 0).rg;
-    float th = aR.x + rd.r * (aR.y - aR.x);
+    int i = gl_VertexID + 1000 * int(dt);
+    vec2 q = texelFetch(rg, ivec2((i + 2) % 200, 0), 0).rg;
+    vec2 r = texelFetch(rg, ivec2(i % 200, i / 200), 0).rg;
+    float th = aR.x + r.r * (aR.y - aR.x);
     float x = cos(th);
     float y = sin(th);
     oP = o;
-    oL = lR.x + rd.r * (lR.y - lR.x);
-    oV = vec2(x, y) * (sR.x + rd.g * (sR.y - sR.x));
+    oL = lR.x + q.r * (lR.y - lR.x);
+    oV = vec2(x, y) * (sR.x + r.g * (sR.y - sR.x));
   } else {
     oP = p + v * dt;
     oL = l - dt;
