@@ -17,6 +17,7 @@ const U_ANGLE_RANGE = "aR";
 const U_SPEED_RANGE = "sR";
 const U_LIFE_RANGE = "lR";
 const U_PARTICLE_COLOR = "c";
+const U_SCALE = "s";
 
 // inputs
 const IN_POSITION = "p";
@@ -81,7 +82,7 @@ const randomRGData = (): Uint8Array => {
 
 /** Particles simulator */
 const simulate = (
-  _canvas: HTMLCanvasElement,
+  canvas: HTMLCanvasElement,
   gl: WebGL2RenderingContext,
   options: ParticlesOptions,
 ) => {
@@ -205,6 +206,8 @@ const simulate = (
 
   gl.clearColor(0, 0, 0, 0);
 
+  gl.useProgram(updateProgram);
+
   const rgNoiseTexture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
   gl.activeTexture(gl.TEXTURE0);
@@ -233,6 +236,15 @@ const simulate = (
     const location = gl.getUniformLocation(updateProgram, name);
     y ? gl.uniform2f(location, x, y) : gl.uniform1f(location, x);
   };
+
+  setUpdateUniform(U_ANGLE_RANGE, ...angleRange);
+  // skipcq: JS-0339 -- set in default options
+  setUpdateUniform(U_LIFE_RANGE, ...options.ageRange!);
+  // skipcq: JS-0339 -- set in default options
+  setUpdateUniform(U_SPEED_RANGE, ...options.speedRange!);
+  // skipcq: JS-0339 -- forcefield is always set by the default options
+  setUpdateUniform(U_FORCE_FIELD, ...options.forceField!);
+
   let prevT = 0;
   let bornParticles = 0;
   let readIndex = 0;
@@ -257,15 +269,7 @@ const simulate = (
 
     setUpdateUniform(U_DT, dt / 1000);
     setUpdateUniform(U_EXTRA_RANDOM, random());
-    // skipcq: JS-0339 -- forcefield is always set by the default options
-    setUpdateUniform(U_FORCE_FIELD, ...options.forceField!);
     setUpdateUniform(U_ORIGIN, mouseX, mouseY);
-    setUpdateUniform(U_ANGLE_RANGE, ...angleRange);
-    // skipcq: JS-0339 -- set in default options
-    setUpdateUniform(U_LIFE_RANGE, ...options.ageRange!);
-    // skipcq: JS-0339 -- set in default options
-    const speedRange = options.speedRange!;
-    setUpdateUniform(U_SPEED_RANGE, speedRange[0], speedRange[1]);
 
     gl.bindVertexArray(vertexArrayObjects[readIndex]);
     gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER, 0, buffers[writeIndex]);
@@ -280,6 +284,12 @@ const simulate = (
     gl.useProgram(renderProgram);
     // skipcq: JS-0339 -- set in default options
     gl.uniform4f(gl.getUniformLocation(renderProgram, U_PARTICLE_COLOR), ...options.rgba!);
+    const height = canvas.height;
+    const width = canvas.width;
+    gl.uniform2f(
+      gl.getUniformLocation(renderProgram, U_SCALE),
+      ...((height > width ? [1, width / height] : [height / width, 1]) as [number, number]),
+    );
     gl.drawArrays(gl.POINTS, 0, bornParticles);
     [readIndex, writeIndex] = [writeIndex, readIndex];
 
@@ -327,7 +337,13 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
   const target = options?.overlay ? window : canvas;
   /** update mouse position */
   const onMouseMove = (e: MouseEvent) => {
-    setOrigin((e.clientX / canvas.width) * 2 - 1, 1 - (e.clientY / canvas.height) * 2);
+    const height = canvas.height;
+    const width = canvas.width;
+    const scale = height > width ? [1, height / width] : [width / height, 1];
+    setOrigin(
+      ((e.clientX / canvas.width) * 2 - 1) * scale[0],
+      (1 - (e.clientY / canvas.height) * 2) * scale[1],
+    );
   };
 
   // @ts-expect-error -- strange type-error
