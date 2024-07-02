@@ -67,7 +67,7 @@ const defaultOptions: ParticlesOptions = {
 /** generate initial data for the simulation */
 const getInitialData = (maxParticles: number) => {
   const data = [];
-  for (let i = 0; i < maxParticles; i++) data.push(0, 0, 0.1, 0, 0);
+  for (let i = 0; i < maxParticles; i++) data.push(0, 0, 0, 0, 0);
   return data;
 };
 
