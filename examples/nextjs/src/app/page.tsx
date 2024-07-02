@@ -24,6 +24,16 @@ export default function Page(): JSX.Element {
           origin: [0, -1],
         }}
       />
+      <Particles
+        style={{
+          height: "300px",
+          width: "60vw",
+          position: "absolute",
+          left: "20vw",
+          top: 0,
+          zIndex: 5,
+        }}
+      />
       <Demo />
     </LandingPage>
   );
