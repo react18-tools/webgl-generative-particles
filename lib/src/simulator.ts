@@ -206,16 +206,18 @@ const simulate = (
 
   const rgNoiseTexture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
+  gl.activeTexture(gl.TEXTURE0);
+
   gl.texImage2D(
     gl.TEXTURE_2D,
     0,
     gl.RG8,
-    512,
-    512,
+    200,
+    200,
     0,
     gl.RG,
     gl.UNSIGNED_BYTE,
-    randomRGData(512, 512),
+    randomRGData(200, 200),
   );
 
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT);
@@ -262,9 +264,6 @@ const simulate = (
     // skipcq: JS-0339 -- set in default options
     const speedRange = options.speedRange!;
     setUpdateUniform(U_SPEED_RANGE, speedRange[0], speedRange[1]);
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, rgNoiseTexture);
-    setUpdateUniform(U_RANDOM_RG, 0);
 
     gl.bindVertexArray(vertexArrayObjects[readIndex]);
     gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER, 0, buffers[writeIndex]);

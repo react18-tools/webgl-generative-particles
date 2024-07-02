@@ -19,7 +19,8 @@ out vec2 oV;
 
 void main() {
   if(l <= 0.f) {
-    ivec2 ij = ivec2(gl_VertexID % 512, gl_VertexID / 512);
+    int i = gl_VertexID;
+    ivec2 ij = ivec2(i % 200, i / 200);
     vec2 rd = texelFetch(rg, ij, 0).rg;
     float th = aR.x + rd.r * (aR.y - aR.x);
     float x = cos(th);
