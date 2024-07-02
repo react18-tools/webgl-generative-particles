@@ -9,7 +9,7 @@ const random = Math.random;
 /** shader names */
 // Uniforms
 const U_DT = "dt";
-const U_RANDOM_RG = "rg";
+const U_EXTRA_RANDOM = "e";
 const U_FORCE_FIELD = "g"; /** gravity */
 const U_ORIGIN = "o";
 const U_ANGLE_RANGE = "aR";
@@ -255,6 +255,7 @@ const simulate = (
     gl.useProgram(updateProgram);
 
     setUpdateUniform(U_DT, dt / 1000);
+    setUpdateUniform(U_EXTRA_RANDOM, random());
     // skipcq: JS-0339 -- forcefield is always set by the default options
     setUpdateUniform(U_FORCE_FIELD, ...options.forceField!);
     setUpdateUniform(U_ORIGIN, mouseX, mouseY);
