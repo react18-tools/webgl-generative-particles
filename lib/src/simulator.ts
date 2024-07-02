@@ -57,12 +57,12 @@ export interface ParticlesOptions {
 const defaultOptions: ParticlesOptions = {
   rgba: [1, 0, 0, 0.5],
   maxParticles: 1000,
-  generationRate: 0.25,
+  generationRate: 0.5,
   // setting range from -PI to PI craetes some patches because of overflows
   angleRange: [-2 * PI, 2 * PI],
   origin: [-1, -1],
-  speedRange: [0.01, 0.1],
-  ageRange: [0.01, 0.5],
+  speedRange: [0.02, 0.2],
+  ageRange: [0.01, 0.6],
   forceField: [0, 0.1],
 };
 
@@ -339,10 +339,13 @@ export const renderParticles = (canvas: HTMLCanvasElement, options?: ParticlesOp
   const onMouseMove = (e: MouseEvent) => {
     const height = canvas.height;
     const width = canvas.width;
+    const boundingRect = canvas.getBoundingClientRect();
+    const xPos = e.pageX - boundingRect.left - scrollX;
+    const yPos = e.pageY - boundingRect.top - scrollY;
     const scale = height > width ? [1, height / width] : [width / height, 1];
     setOrigin(
-      ((e.clientX / canvas.width) * 2 - 1) * scale[0],
-      (1 - (e.clientY / canvas.height) * 2) * scale[1],
+      ((xPos / canvas.width) * 2 - 1) * scale[0],
+      (1 - (yPos / canvas.height) * 2) * scale[1],
     );
   };
 

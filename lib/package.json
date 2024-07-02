@@ -2,7 +2,7 @@
   "name": "webgl-generative-particles",
   "author": "Mayank Kumar Chaudhari <https://mayank-chaudhari.vercel.app>",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An efficient WebGL-based generative particle system.",
   "license": "MPL-2.0",
   "main": "./dist/index.js",

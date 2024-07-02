@@ -34,7 +34,8 @@ export const Particles = ({ options, overlay, fullScreenOverlay, ...props }: Par
     () =>
       canvasRef.current
         ? renderParticles(canvasRef.current, { ...options, overlay: resolvedOverlay })
-        : undefined,
+        : /* v8 ignore next */
+          undefined,
     [options, resolvedOverlay],
   );
   return <canvas ref={canvasRef} style={style} {...props} data-testid="particles" />;
