@@ -6,6 +6,7 @@ import renderFragmentShaderSource from "./shaders/render-frag.glsl?raw";
 // constnats
 const PI = Math.PI;
 const random = Math.random;
+const RANDOM_IMG_SIZE = 200;
 /** shader names */
 // Uniforms
 const U_DT = "dt";
@@ -72,9 +73,9 @@ const getInitialData = (maxParticles: number) => {
 };
 
 /** generate random RG data for source of randomness within the simulation */
-const randomRGData = (sizeX: number, sizeY: number): Uint8Array => {
+const randomRGData = (): Uint8Array => {
   const data = [];
-  for (let i = 0; i < sizeX * sizeY; i++) data.push(random() * 255.0, random() * 255.0);
+  for (let i = 0; i < 2 * RANDOM_IMG_SIZE ** 2; i++) data.push(random() * 255);
   return new Uint8Array(data);
 };
 
@@ -212,12 +213,12 @@ const simulate = (
     gl.TEXTURE_2D,
     0,
     gl.RG8,
-    200,
-    200,
+    RANDOM_IMG_SIZE,
+    RANDOM_IMG_SIZE,
     0,
     gl.RG,
     gl.UNSIGNED_BYTE,
-    randomRGData(200, 200),
+    randomRGData(),
   );
 
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT);
