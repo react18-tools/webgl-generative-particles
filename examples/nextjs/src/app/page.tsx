@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 /** next.js landing page */
-export default function Page(): JSX.Element {
+export default function Page() {
   const theta = Math.PI / 6;
   return (
     <LandingPage title="Next.js Example">
