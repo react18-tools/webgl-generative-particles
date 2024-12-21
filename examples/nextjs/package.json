@@ -17,7 +17,7 @@
     "nextjs-themes": "^4.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-mouse-trails": "^0.0.4",
+    "react-mouse-trails": "^0.0.5",
     "react18-loaders": "^1.1.4",
     "webgl-generative-particles": "workspace:*"
   },
