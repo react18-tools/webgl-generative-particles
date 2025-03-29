@@ -15,7 +15,6 @@ export interface ParticlesProps extends HTMLProps<HTMLCanvasElement> {
  * <Particles />
  * ```
  *
- * @source - Source code
  */
 export const Particles = ({ options, overlay, fullScreenOverlay, ...props }: ParticlesProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
